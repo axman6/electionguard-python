@@ -753,7 +753,7 @@ class CiphertextBallot(ElectionObjectBase, CryptoHashCheckable):
             )
             return ZERO_MOD_Q
 
-        contest_hashes = [contest.crypto_hash for contest in self.contests]
+        contest_hashes = [contest.crypto_hash for contest in sequence_order_sort(self.contests)]
         return hash_elems(self.object_id, encryption_seed, *contest_hashes)
 
     def is_valid_encryption(
